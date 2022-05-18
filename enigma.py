@@ -2,14 +2,18 @@
 import random
 
 
-#This pyhton file will be used to create a enigma encyrption of any input text using the Engima 1 schema 
+#This pyhton file will be used to create a enigma encyrption of any input text using the Engima 1 schema
 
-aplhadir = {1 :'A', 2 : 'B', 3 : 'C', 4 :'D', 5:'E',6:'F',7:'G',8:'H',9:'I',10:'J',11:'K',
-12:'L',13:'M',14:'N',15:'O',16:'P',17:'Q',18:'R',19:'S',20:'T',21:'U',22:'V',23:'W',24:'X',25:'Y',26:'Z'}
+aplhadir = {1 :'A', 2 : 'B', 3 : 'C', 4 :'D', 5:'E',
+6:'F',7:'G',8:'H',9:'I',10:'J',11:'K',
+12:'L',13:'M',14:'N',15:'O',16:'P',17:'Q',18:'R',19:'S',20:'T'
+,21:'U',22:'V',23:'W',24:'X',25:'Y',26:'Z'}
 
-#This class will create a rotor with the key matching to number pairs 
 class Rotor:
-
+	'''
+	Creates a rotor with the key matching to number pairs
+	Has three varies key, notch, turnover
+	'''
 	def __init__(self, key, notch, turnover):
 		self.turnover = turnover
 		self.notch = notch
@@ -21,6 +25,12 @@ class Rotor:
 		return f'Keys: {self.keys}, turnover {self.turnover}, notch {self.notch}'
 
 	#Define a turn method when the ring hits it's notch it turns the key
+
+	def turn(self):
+		pass
+
+	def translate(self, letter, alphabet):
+		print(self.keys.get(letter))
 
 #A randomized plugboard that built for the engima to match letters
 class Plugboard:
@@ -61,9 +71,8 @@ class Enigma:
 r1 = Rotor('EKMFLGDQVZNTOWYHXUSPAIBRCJ', 'Q', 'Y')
 r2 = Rotor('AJDKSIRUXBLHWTMCQGZNPYFVOE', 'M', 'E')
 r3 = Rotor('BDFHJLCPRTXVZNYEIWGAKMUSQO', 'D', 'V')
+rs = [r1,r2,r3]
 pb = Plugboard()
+r1.translate('A', aplhadir)
 pb.create_board()
-E1 = Enigma([r1,r2,r3],pb)
-print(E1)
-for r in E1.rotors:
-	print(r.keys)
+E1 = Enigma(rs,pb)
